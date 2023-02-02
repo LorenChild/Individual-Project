@@ -6,7 +6,10 @@ if keyboard_check_pressed(vk_escape){
 		room_goto(rm_menu);
 	//checking if the room is a level room and if so sends to pause page
 	} else if(room = rm_level_1){
-		room_goto(rm_pause_screen)
+		//so not created if already there
+		if !instance_exists(obj_pause_screen){
+			instance_create_layer(0, 0, "pause_screen_layer", obj_pause_screen);
+		}
 	}
 }
 

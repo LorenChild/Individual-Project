@@ -5,6 +5,7 @@
   "resources": [
     {"id":{"name":"obj_menu_game_name","path":"objects/obj_menu_game_name/obj_menu_game_name.yy",},"order":0,},
     {"id":{"name":"obj_menu_button_select_character","path":"objects/obj_menu_button_select_character/obj_menu_button_select_character.yy",},"order":6,},
+    {"id":{"name":"spr_pause_screen","path":"sprites/spr_pause_screen/spr_pause_screen.yy",},"order":22,},
     {"id":{"name":"obj_select_character_player_orange","path":"objects/obj_select_character_player_orange/obj_select_character_player_orange.yy",},"order":16,},
     {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},"order":20,},
     {"id":{"name":"rm_settings","path":"rooms/rm_settings/rm_settings.yy",},"order":2,},
@@ -36,8 +37,8 @@
     {"id":{"name":"rm_level_1","path":"rooms/rm_level_1/rm_level_1.yy",},"order":4,},
     {"id":{"name":"obj_select_character_player_pink","path":"objects/obj_select_character_player_pink/obj_select_character_player_pink.yy",},"order":14,},
     {"id":{"name":"obj_player_level_1","path":"objects/obj_player_level_1/obj_player_level_1.yy",},"order":30,},
-    {"id":{"name":"rm_pause_screen","path":"rooms/rm_pause_screen/rm_pause_screen.yy",},"order":5,},
     {"id":{"name":"obj_menu_controls_explained","path":"objects/obj_menu_controls_explained/obj_menu_controls_explained.yy",},"order":1,},
+    {"id":{"name":"obj_pause_screen","path":"objects/obj_pause_screen/obj_pause_screen.yy",},"order":31,},
     {"id":{"name":"obj_menu_button_save_and_quit","path":"objects/obj_menu_button_save_and_quit/obj_menu_button_save_and_quit.yy",},"order":7,},
     {"id":{"name":"obj_select_character_code","path":"objects/obj_select_character_code/obj_select_character_code.yy",},"order":21,},
     {"id":{"name":"obj_levels_button_level_1","path":"objects/obj_levels_button_level_1/obj_levels_button_level_1.yy",},"order":25,},
@@ -82,7 +83,6 @@
     {"roomId":{"name":"rm_settings","path":"rooms/rm_settings/rm_settings.yy",},},
     {"roomId":{"name":"rm_select_character","path":"rooms/rm_select_character/rm_select_character.yy",},},
     {"roomId":{"name":"rm_level_1","path":"rooms/rm_level_1/rm_level_1.yy",},},
-    {"roomId":{"name":"rm_pause_screen","path":"rooms/rm_pause_screen/rm_pause_screen.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":12,},
