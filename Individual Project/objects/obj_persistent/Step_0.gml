@@ -4,6 +4,9 @@
 if keyboard_check_pressed(vk_escape){
 	if (room = rm_levels) or (room = rm_select_character) or (room = rm_settings){
 		room_goto(rm_menu);
+	//checking if the room is a level room and if so sends to pause page
+	} else if(room = rm_level_1){
+		room_goto(rm_pause_screen)
 	}
 }
 
