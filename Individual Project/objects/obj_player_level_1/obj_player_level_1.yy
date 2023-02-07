@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_player_level_1",
   "spriteId": {
-    "name": "spr_player_blue",
-    "path": "sprites/spr_player_blue/spr_player_blue.yy",
+    "name": "spr_player_pink_smaller",
+    "path": "sprites/spr_player_pink_smaller/spr_player_pink_smaller.yy",
   },
   "solid": false,
   "visible": true,
@@ -26,6 +26,8 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
