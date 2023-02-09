@@ -28,7 +28,7 @@ if place_meeting(x + hsp, y, obj_wall){
 x += hsp;
 
 if place_meeting(x, y + vsp, obj_wall){
-	if (vsp > 0) canJump = 10;
+	if (vsp > 0) canJump = 5;
 	while (abs(vsp) > 0.1){
 		vsp *= 0.5;
 		if (!place_meeting(x, y + vsp, obj_wall)) y += vsp;

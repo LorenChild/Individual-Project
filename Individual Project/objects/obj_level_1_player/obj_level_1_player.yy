@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_player_level_1",
+  "name": "obj_level_1_player",
   "spriteId": {
     "name": "spr_player_pink_smaller",
     "path": "sprites/spr_player_pink_smaller/spr_player_pink_smaller.yy",
