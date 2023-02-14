@@ -12,3 +12,8 @@ hspWalk = 3.5;
 vspJump = -6;
 //are we touching the ground
 canJump = 0;
+// value to reset canJump to when ground touched
+canJumpResetValue = 5;
+// starting death restart point - x + y values
+checkpointX = 640;
+checkpointY = 736;
