@@ -41,34 +41,34 @@ if canJump-- > 0 and keyJump{
 
 //collide and move
 // for x collision can calculate wall and moving platform collisions together, as platform moves vertically so shouldn't mess up horizontal collisions
-if place_meeting(x + hsp, y, obj_wall) or place_meeting(x + hsp, y, obj_level_1_moving_platform){
+if place_meeting(x + hsp, y, obj_wall) or place_meeting(x + hsp, y, obj_level_1_moving_platform) or place_meeting(x + hsp, y, obj_level_1_broken_platform){
 	while (abs(hsp) > 0.1){
 		hsp *= 0.5;
-		if (!place_meeting(x + hsp, y, obj_wall)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform)) x += hsp;
+		if (!place_meeting(x + hsp, y, obj_wall)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform)) and (!place_meeting(x + hsp, y, obj_level_1_broken_platform)) x += hsp;
 	}
 	hsp = 0;
 }
 x += hsp;
 
-if place_meeting(x, y + vsp, obj_wall){
+if place_meeting(x, y + vsp, obj_wall) or place_meeting(x, y + vsp, obj_level_1_broken_platform){
 	if (vsp > 0) canJump = canJumpResetValue;
 	while (abs(vsp) > 0.1){
 		vsp *= 0.5;
-		if (!place_meeting(x, y + vsp, obj_wall)) y += vsp;
+		if (!place_meeting(x, y + vsp, obj_wall)) and (!place_meeting(x, y + vsp, obj_level_1_broken_platform)) y += vsp;
 	}
 	vsp = 0;
 } 
 
 // if bounce pad touched
 if place_meeting(x, y, obj_level_1_bounce_pad){
-	vsp = vspJump*2;
+	vsp = vspJump*1.65;
 }
 
 //actually moving (verticallllly)
 y += vsp;
 
 // death - if hitting kill-y thing
-if place_meeting(x, y, obj_level_1_lava) or place_meeting(x, y, obj_level_1_spikes_ceiling){
+if place_meeting(x, y, obj_level_1_lava) or place_meeting(x, y, obj_level_1_spikes_ceiling) or place_meeting(x, y, obj_level_1_moving_saw_1) or place_meeting(x, y, obj_level_1_moving_saw_2) or place_meeting(x, y, obj_level_1_moving_saw_3){
 	// starts death animation then sends object to checkpoint coords and resets speed variables
 	instance_create_layer(x, y, "Instances", obj_death_animation);
 	x = checkpointX;
