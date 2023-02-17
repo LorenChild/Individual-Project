@@ -18,11 +18,17 @@ with obj_level_1_moving_platform{
 	// making local variable the platform's vertical speed
 	pvsp = vsp;
 }
-// collisions with moving platform - before collisions with wall object so wall collisions take precidence
-if place_meeting(x, y + vsp, obj_level_1_moving_platform){
+// Second moving platform
+var pvsp2 = 0;
+with obj_level_1_moving_platform_2{
+	// making local variable the platform's vertical speed
+	pvsp2 = vsp;
+}
+// collisions with moving platforms - before collisions with wall object so wall collisions take precidence
+if place_meeting(x, y + vsp, obj_level_1_moving_platform) or place_meeting(x, y + vsp, obj_level_1_moving_platform_2){
 	while (abs(vsp) > 0.1){
 		vsp *= 0.5;
-		if (!place_meeting(x, y + vsp, obj_level_1_moving_platform)) y += vsp;
+		if (!place_meeting(x, y + vsp, obj_level_1_moving_platform)) and (!place_meeting(x, y + vsp, obj_level_1_moving_platform_2)) y += vsp;
 	}
 	vsp = 0;
 }
@@ -30,6 +36,11 @@ if place_meeting(x, y + vsp, obj_level_1_moving_platform){
 if place_meeting(x, y+0.1, obj_level_1_moving_platform){
 	canJump = canJumpResetValue;
 	vsp = pvsp;
+}
+// second moving platform
+if place_meeting(x, y+0.1, obj_level_1_moving_platform_2){
+	canJump = canJumpResetValue;
+	vsp = pvsp2;
 }
 
 //work out if we should jump
@@ -41,20 +52,20 @@ if canJump-- > 0 and keyJump{
 
 //collide and move
 // for x collision can calculate wall and moving platform collisions together, as platform moves vertically so shouldn't mess up horizontal collisions
-if place_meeting(x + hsp, y, obj_wall) or place_meeting(x + hsp, y, obj_level_1_moving_platform) or place_meeting(x + hsp, y, obj_level_1_broken_platform){
+if place_meeting(x + hsp, y, obj_wall) or place_meeting(x + hsp, y, obj_level_1_moving_platform) or place_meeting(x + hsp, y, obj_level_1_broken_platform) or place_meeting(x + hsp, y, obj_level_1_moving_platform_2) or place_meeting(x + hsp, y, obj_level_1_barrier_1) or place_meeting(x + hsp, y, obj_level_1_barrier_2){
 	while (abs(hsp) > 0.1){
 		hsp *= 0.5;
-		if (!place_meeting(x + hsp, y, obj_wall)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform)) and (!place_meeting(x + hsp, y, obj_level_1_broken_platform)) x += hsp;
+		if (!place_meeting(x + hsp, y, obj_wall)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform)) and (!place_meeting(x + hsp, y, obj_level_1_broken_platform)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform_2)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_1)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_2)) x += hsp;
 	}
 	hsp = 0;
 }
 x += hsp;
 
-if place_meeting(x, y + vsp, obj_wall) or place_meeting(x, y + vsp, obj_level_1_broken_platform){
+if place_meeting(x, y + vsp, obj_wall) or place_meeting(x, y + vsp, obj_level_1_broken_platform) or place_meeting(x, y + vsp, obj_level_1_barrier_1) or place_meeting(x, y + vsp, obj_level_1_barrier_2){
 	if (vsp > 0) canJump = canJumpResetValue;
 	while (abs(vsp) > 0.1){
 		vsp *= 0.5;
-		if (!place_meeting(x, y + vsp, obj_wall)) and (!place_meeting(x, y + vsp, obj_level_1_broken_platform)) y += vsp;
+		if (!place_meeting(x, y + vsp, obj_wall)) and (!place_meeting(x, y + vsp, obj_level_1_broken_platform)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_1)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_2)) y += vsp;
 	}
 	vsp = 0;
 } 
