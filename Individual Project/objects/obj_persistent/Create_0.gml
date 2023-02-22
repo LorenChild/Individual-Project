@@ -16,3 +16,6 @@ fullscreen = true;
 // variables for levels unlocked / selected
 global.levelSelected = 0;
 global.levelsUnlocked = 0;
+
+// checks whether a level is paused
+global.paused = 0;

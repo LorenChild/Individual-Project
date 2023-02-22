@@ -9,6 +9,8 @@ if keyboard_check_pressed(vk_escape){
 		//so not created if already there
 		if !instance_exists(obj_pause_screen){
 			instance_create_layer(0, 0, "pause_screen_layer", obj_pause_screen);
+			// changing paused variable so game knows whether to run level code
+			global.paused = 1;
 		}
 	}
 }
