@@ -30,7 +30,7 @@ stateNormal = function()
 	// Getting inputs - using local variables
 	var keyRight = keyboard_check(vk_right);
 	var keyLeft = keyboard_check(vk_left);
-	var keyJump = keyboard_check_pressed(vk_space);
+	var keyJump = keyboard_check_pressed(vk_up);
 
 	//work out where to move horizontally
 	hsp = (keyRight - keyLeft) * hspWalk;
@@ -79,20 +79,20 @@ stateNormal = function()
 
 	//collide and move
 	// for x collision can calculate wall and moving platform collisions together, as platform moves vertically so shouldn't mess up horizontal collisions
-	if place_meeting(x + hsp, y, obj_wall) or place_meeting(x + hsp, y, obj_level_1_moving_platform) or place_meeting(x + hsp, y, obj_level_1_broken_platform) or place_meeting(x + hsp, y, obj_level_1_moving_platform_2) or place_meeting(x + hsp, y, obj_level_1_barrier_1) or place_meeting(x + hsp, y, obj_level_1_barrier_2){
+	if place_meeting(x + hsp, y, obj_wall) or place_meeting(x + hsp, y, obj_level_1_moving_platform) or place_meeting(x + hsp, y, obj_level_1_broken_platform) or place_meeting(x + hsp, y, obj_level_1_moving_platform_2) or place_meeting(x + hsp, y, obj_level_1_barrier_1) or place_meeting(x + hsp, y, obj_level_1_barrier_2) or place_meeting(x + hsp, y, obj_level_1_barrier_3){
 		while (abs(hsp) > 0.1){
 			hsp *= 0.5;
-			if (!place_meeting(x + hsp, y, obj_wall)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform)) and (!place_meeting(x + hsp, y, obj_level_1_broken_platform)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform_2)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_1)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_2)) x += hsp;
+			if (!place_meeting(x + hsp, y, obj_wall)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform)) and (!place_meeting(x + hsp, y, obj_level_1_broken_platform)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform_2)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_1)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_2)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_3)) x += hsp;
 		}
 		hsp = 0;
 	}
 	x += hsp;
 
-	if place_meeting(x, y + vsp, obj_wall) or place_meeting(x, y + vsp, obj_level_1_broken_platform) or place_meeting(x, y + vsp, obj_level_1_barrier_1) or place_meeting(x, y + vsp, obj_level_1_barrier_2){
+	if place_meeting(x, y + vsp, obj_wall) or place_meeting(x, y + vsp, obj_level_1_broken_platform) or place_meeting(x, y + vsp, obj_level_1_barrier_1) or place_meeting(x, y + vsp, obj_level_1_barrier_2) or place_meeting(x, y + vsp, obj_level_1_barrier_3){
 		if (vsp > 0) canJump = canJumpResetValue;
 		while (abs(vsp) > 0.1){
 			vsp *= 0.5;
-			if (!place_meeting(x, y + vsp, obj_wall)) and (!place_meeting(x, y + vsp, obj_level_1_broken_platform)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_1)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_2)) y += vsp;
+			if (!place_meeting(x, y + vsp, obj_wall)) and (!place_meeting(x, y + vsp, obj_level_1_broken_platform)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_1)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_2)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_3)) y += vsp;
 		}
 		vsp = 0;
 	} 
@@ -106,7 +106,7 @@ stateNormal = function()
 	y += vsp;
 
 	// death - if hitting kill-y thing
-	if place_meeting(x, y, obj_level_1_lava) or place_meeting(x, y, obj_level_1_spikes_ceiling) or place_meeting(x, y, obj_level_1_moving_saw_1) or place_meeting(x, y, obj_level_1_moving_saw_2) or place_meeting(x, y, obj_level_1_moving_saw_3){
+	if place_meeting(x, y, obj_level_1_lava) or place_meeting(x, y, obj_level_1_spikes_ceiling) or place_meeting(x, y, obj_level_1_moving_saw_1) or place_meeting(x, y, obj_level_1_moving_saw_2) or place_meeting(x, y, obj_level_1_moving_saw_3) or place_meeting(x, y, obj_level_1_stationary_saw) or place_meeting(x, y, obj_level_1_moving_saw_4) or place_meeting(x, y, obj_level_1_moving_saw_5) or place_meeting(x, y, obj_level_1_moving_saw_6) or place_meeting(x, y, obj_level_1_missile){
 		// starts death animation then sends object to checkpoint coords and resets speed variables
 		instance_create_layer(x, y, "Instances", obj_death_animation);
 		x = checkpointX;
@@ -123,7 +123,7 @@ stateSwimming = function()
 	// Getting inputs - using local variables
 	var keyRight = keyboard_check(vk_right);
 	var keyLeft = keyboard_check(vk_left);
-	var keyJump = keyboard_check_pressed(vk_space);
+	var keyJump = keyboard_check_pressed(vk_up);
 
 	//work out where to move horizontally - dividing walk speed to player moves slower
 	hsp = (keyRight - keyLeft) * (hspWalk/2);
@@ -172,20 +172,20 @@ stateSwimming = function()
 
 	//collide and move
 	// for x collision can calculate wall and moving platform collisions together, as platform moves vertically so shouldn't mess up horizontal collisions
-	if place_meeting(x + hsp, y, obj_wall) or place_meeting(x + hsp, y, obj_level_1_moving_platform) or place_meeting(x + hsp, y, obj_level_1_broken_platform) or place_meeting(x + hsp, y, obj_level_1_moving_platform_2) or place_meeting(x + hsp, y, obj_level_1_barrier_1) or place_meeting(x + hsp, y, obj_level_1_barrier_2){
+	if place_meeting(x + hsp, y, obj_wall) or place_meeting(x + hsp, y, obj_level_1_moving_platform) or place_meeting(x + hsp, y, obj_level_1_broken_platform) or place_meeting(x + hsp, y, obj_level_1_moving_platform_2) or place_meeting(x + hsp, y, obj_level_1_barrier_1) or place_meeting(x + hsp, y, obj_level_1_barrier_2) or place_meeting(x + hsp, y, obj_level_1_barrier_3){
 		while (abs(hsp) > 0.1){
 			hsp *= 0.5;
-			if (!place_meeting(x + hsp, y, obj_wall)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform)) and (!place_meeting(x + hsp, y, obj_level_1_broken_platform)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform_2)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_1)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_2)) x += hsp;
+			if (!place_meeting(x + hsp, y, obj_wall)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform)) and (!place_meeting(x + hsp, y, obj_level_1_broken_platform)) and (!place_meeting(x + hsp, y, obj_level_1_moving_platform_2)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_1)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_2)) and (!place_meeting(x + hsp, y, obj_level_1_barrier_3)) x += hsp;
 		}
 		hsp = 0;
 	}
 	x += hsp;
 
-	if place_meeting(x, y + vsp, obj_wall) or place_meeting(x, y + vsp, obj_level_1_broken_platform) or place_meeting(x, y + vsp, obj_level_1_barrier_1) or place_meeting(x, y + vsp, obj_level_1_barrier_2){
+	if place_meeting(x, y + vsp, obj_wall) or place_meeting(x, y + vsp, obj_level_1_broken_platform) or place_meeting(x, y + vsp, obj_level_1_barrier_1) or place_meeting(x, y + vsp, obj_level_1_barrier_2) or place_meeting(x, y + vsp, obj_level_1_barrier_3){
 		if (vsp > 0) canJump = canJumpResetValue;
 		while (abs(vsp) > 0.1){
 			vsp *= 0.5;
-			if (!place_meeting(x, y + vsp, obj_wall)) and (!place_meeting(x, y + vsp, obj_level_1_broken_platform)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_1)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_2)) y += vsp;
+			if (!place_meeting(x, y + vsp, obj_wall)) and (!place_meeting(x, y + vsp, obj_level_1_broken_platform)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_1)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_2)) and (!place_meeting(x, y + vsp, obj_level_1_barrier_3)) y += vsp;
 		}
 		vsp = 0;
 	} 
@@ -196,7 +196,7 @@ stateSwimming = function()
 	y += vsp/3;
 
 	// death - if hitting kill-y thing
-	if place_meeting(x, y, obj_level_1_lava) or place_meeting(x, y, obj_level_1_spikes_ceiling) or place_meeting(x, y, obj_level_1_moving_saw_1) or place_meeting(x, y, obj_level_1_moving_saw_2) or place_meeting(x, y, obj_level_1_moving_saw_3){
+	if place_meeting(x, y, obj_level_1_lava) or place_meeting(x, y, obj_level_1_spikes_ceiling) or place_meeting(x, y, obj_level_1_moving_saw_1) or place_meeting(x, y, obj_level_1_moving_saw_2) or place_meeting(x, y, obj_level_1_moving_saw_3) or place_meeting(x, y, obj_level_1_stationary_saw) or place_meeting(x, y, obj_level_1_moving_saw_4) or place_meeting(x, y, obj_level_1_moving_saw_5) or place_meeting(x, y, obj_level_1_moving_saw_6) or place_meeting(x, y, obj_level_1_missile){
 		// starts death animation then sends object to checkpoint coords and resets speed variables
 		instance_create_layer(x, y, "Instances", obj_death_animation);
 		x = checkpointX;
