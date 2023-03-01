@@ -15,11 +15,8 @@ canJump = 0;
 // value to reset canJump to when ground touched
 canJumpResetValue = 5;
 // starting death restart point - x + y values
-//checkpointX = 640;
-//checkpointY = 736;
-// TEMPoRARY FIRST CHECKPOINTS FOR EASE OF TESTING
-checkpointX = 830;
-checkpointY = 536;
+checkpointX = 640;
+checkpointY = 736;
 
 // state machine - creating state functions
 // normal state
