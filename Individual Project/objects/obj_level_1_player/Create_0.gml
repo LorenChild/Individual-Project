@@ -163,7 +163,7 @@ stateSwimming = function()
 	//work out if we should jump - canJump doesn't need to be above zero so player can jump in mid-water - swimming - and jump value doesn't need to be regulated
 	if keyJump {
 		// += not just = so movement relative to inertial frame such as that of moving platform - jump speed divided so jump is smaller in water
-		vsp += (vspJump/3);
+		vsp += (vspJump/2);
 		canJump = 0;
 	}
 
