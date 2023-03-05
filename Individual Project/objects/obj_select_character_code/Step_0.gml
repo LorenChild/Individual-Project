@@ -44,5 +44,11 @@ with obj_select_character_picked{
 
 // character picked changes when enter pressed
 if keyboard_check_pressed(vk_enter){
-	global.player_character_picked = global.player_character_selected;
+	// if selected character isn't already the same as the picked one...
+	if global.player_character_picked != global.player_character_selected{
+		// plays sound effect - 'false' means it doesn't loop
+		audio_play_sound(snd_select_character, 0, false);
+
+		global.player_character_picked = global.player_character_selected;
+	}
 }

@@ -2,6 +2,8 @@
 
 // if player touches portal and portals are on
 if place_meeting(x, y, obj_level_1_player) and (global.portalsOn = 1){
+	// plays sound effect - 'false' means it doesn't loop
+	audio_play_sound(snd_level_1_portal, 0, false);
 	// turning portals off
 	global.portalsOn = 0;
 	//moving player to position of other portal

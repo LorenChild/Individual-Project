@@ -22,6 +22,11 @@ checkpointY = 736;
 // normal state
 stateNormal = function()
 {
+	// stopping water sound effect (or it would keep playing forever after entering water)	
+	if audio_is_playing(snd_level_1_water){
+		audio_stop_sound(snd_level_1_water);
+	}
+	
 	//calculating player movement
 	
 	// Getting inputs - using local variables
@@ -97,6 +102,8 @@ stateNormal = function()
 	// if bounce pad touched
 	if place_meeting(x, y, obj_level_1_bounce_pad){
 		vsp = vspJump*1.65;
+		// plays sound effect - 'false' means it doesn't loop
+		audio_play_sound(snd_level_1_bounce_pad, 0, false);
 	}
 
 	//actually moving (verticallllly)
@@ -104,6 +111,8 @@ stateNormal = function()
 
 	// death - if hitting kill-y thing
 	if place_meeting(x, y, obj_level_1_lava) or place_meeting(x, y, obj_level_1_spikes_ceiling) or place_meeting(x, y, obj_level_1_moving_saw_1) or place_meeting(x, y, obj_level_1_moving_saw_2) or place_meeting(x, y, obj_level_1_moving_saw_3) or place_meeting(x, y, obj_level_1_stationary_saw) or place_meeting(x, y, obj_level_1_moving_saw_4) or place_meeting(x, y, obj_level_1_moving_saw_5) or place_meeting(x, y, obj_level_1_moving_saw_6) or place_meeting(x, y, obj_level_1_missile){
+		// plays sound effect - 'false' means it doesn't loop
+		audio_play_sound(snd_level_1_dying, 0, false);
 		// starts death animation then sends object to checkpoint coords and resets speed variables
 		instance_create_layer(x, y, "Instances", obj_death_animation);
 		x = checkpointX;
@@ -115,6 +124,12 @@ stateNormal = function()
 
 stateSwimming = function()
 {
+	// playing water sound effect if it isn't already playing
+	if !audio_is_playing(snd_level_1_water){
+		// playing the sound - 'true' means audio loops
+		audio_play_sound(snd_level_1_water, 0, true);
+	}
+
 	//calculating player movement
 	
 	// Getting inputs - using local variables
@@ -194,6 +209,8 @@ stateSwimming = function()
 
 	// death - if hitting kill-y thing
 	if place_meeting(x, y, obj_level_1_lava) or place_meeting(x, y, obj_level_1_spikes_ceiling) or place_meeting(x, y, obj_level_1_moving_saw_1) or place_meeting(x, y, obj_level_1_moving_saw_2) or place_meeting(x, y, obj_level_1_moving_saw_3) or place_meeting(x, y, obj_level_1_stationary_saw) or place_meeting(x, y, obj_level_1_moving_saw_4) or place_meeting(x, y, obj_level_1_moving_saw_5) or place_meeting(x, y, obj_level_1_moving_saw_6) or place_meeting(x, y, obj_level_1_missile){
+		// plays sound effect - 'false' means it doesn't loop
+		audio_play_sound(snd_level_1_dying, 0, false);
 		// starts death animation then sends object to checkpoint coords and resets speed variables
 		instance_create_layer(x, y, "Instances", obj_death_animation);
 		x = checkpointX;

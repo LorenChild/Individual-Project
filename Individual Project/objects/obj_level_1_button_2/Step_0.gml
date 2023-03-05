@@ -2,6 +2,8 @@
 
 // if player touches button when if it hasn't been pressed yet...
 if (place_meeting(x, y, obj_level_1_player)) and (image_index = 0){
+	// plays sound effect - 'false' means it doesn't loop
+	audio_play_sound(snd_level_1_button, 0, false);
 	//plays button pressed animation
 	image_speed = 1;
 	// destroying barrier

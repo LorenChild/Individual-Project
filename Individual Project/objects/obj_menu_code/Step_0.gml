@@ -16,6 +16,9 @@ with (obj_arrow){
 // carrying out correct thing if enter is pressed
 if (keyboard_check_pressed(vk_enter)){
 	if (global.menuSelected < 3) {
+		// plays sound effect - 'false' means it doesn't loop
+		audio_play_sound(snd_select, 0, false);
+		
 		room_goto(roomList[global.menuSelected]);
 	} else{
 		game_end();

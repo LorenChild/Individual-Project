@@ -5,4 +5,3 @@ image_speed = 0;
 
 // setting image alpha lower so it appears translucent
 image_alpha = 0.2;
-
