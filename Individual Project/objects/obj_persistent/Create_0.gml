@@ -1,4 +1,4 @@
-/// @description Creating variables that last between levels
+/// @description Creating variables that last between levels and changing text in top bar
 
 // list of possible player sprites (big and small)
 global.PLAYER_CHARACTER_LIST = [spr_player_red, spr_player_orange, spr_player_yellow, spr_player_green, spr_player_blue, spr_player_pink, spr_player_purple, spr_player_checkered];
@@ -19,3 +19,6 @@ global.levelsUnlocked = 0;
 
 // checks whether a level is paused
 global.paused = 0;
+
+// setting text shown in top bar to the name of the game
+window_set_caption("Game Name");
