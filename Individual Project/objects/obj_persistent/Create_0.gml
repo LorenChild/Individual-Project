@@ -15,7 +15,20 @@ fullscreen = true;
 
 // variables for levels unlocked / selected
 global.levelSelected = 0;
-global.levelsUnlocked = 0;
+// loading levels unlocked variable from gamesave if there is one
+if (file_exists("levelsunlocked.save")){
+	// loading buffer from file
+	var buffer = buffer_load("levelsunlocked.save");
+	// saving buffer as a string
+	var levelsUnlocked = buffer_read(buffer, buffer_string);
+	//deleting buffer because its no longer needed as we have it as a string
+	buffer_delete(buffer);
+	// turning loaded string into an integer and setting it as the levels unlocked variable
+	global.levelsUnlocked = int64(levelsUnlocked);
+} else{
+	// saving levels unlocked as none if no save file already exists
+	global.levelsUnlocked = 0;
+}
 
 // checks whether a level is paused
 global.paused = 0;

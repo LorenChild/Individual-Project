@@ -1,4 +1,4 @@
-/// @description Setting up movement variables
+/// @description Setting up movement variables + functions
 
 // gravity
 grv = 0.2;
@@ -14,9 +14,27 @@ vspJump = -6;
 canJump = 0;
 // value to reset canJump to when ground touched
 canJumpResetValue = 5;
+// player's starting position - loading last checkpoint if save file exists
+if (file_exists("level1info.save")){
+	// loading buffer from file
+	var buffer = buffer_load("level1info.save");
+	// saving buffer as string
+	var str = buffer_read(buffer, buffer_string);
+	// deleting buffer because we now have it saved as a string
+	buffer_delete(buffer);
+	// making data string back into an array
+	var arr = json_parse(str);
+	// setting x and y values so player starts at saved position
+	x = arr[0];
+	y = arr[1];
+	// starting death restart point - x + y values
+	checkpointX = arr[0];
+	checkpointY = arr[1];
 // starting death restart point - x + y values
-checkpointX = 640;
-checkpointY = 736;
+} else{
+	checkpointX = 640;
+	checkpointY = 736;
+}
 
 // state machine - creating state functions
 // normal state
@@ -25,6 +43,29 @@ stateNormal = function()
 	// stopping water sound effect (or it would keep playing forever after entering water)	
 	if audio_is_playing(snd_level_1_water){
 		audio_stop_sound(snd_level_1_water);
+	}
+	
+	// restarting room if delete pressed
+	if keyboard_check_pressed(vk_delete){
+		// resetting all things to as they were at the start - player coords and barriers existing
+		checkpointX = 640;
+		checkpointY = 736;
+		// resetting info in save file
+		var level1info = [640, 736, 1, 1, 1];
+		// turning data into a JSON string (because buffers can't be arrays) and making it a buffer to save it
+		var str = json_stringify(level1info);
+		var buffer = buffer_create(string_byte_length(str) + 1, buffer_fixed, 1);
+		buffer_write( buffer, buffer_string, str);
+		//saving the buffer to a file
+		buffer_save( buffer, "level1info.save");
+		// deleting buffer because its no longer needed
+		buffer_delete(buffer);
+		// readding barriers if they're gone
+		if (!instance_exists(obj_level_1_barrier_1)) instance_create_layer(560, 64, "Instances_1", obj_level_1_barrier_1);
+		if (!instance_exists(obj_level_1_barrier_2)) instance_create_layer(624, 64, "Instances_1", obj_level_1_barrier_2);
+		if (!instance_exists(obj_level_1_barrier_3)) instance_create_layer(1280, 592, "Instances_1", obj_level_1_barrier_3);
+		// restarting room
+		room_restart();
 	}
 	
 	//calculating player movement
@@ -128,6 +169,29 @@ stateSwimming = function()
 	if !audio_is_playing(snd_level_1_water){
 		// playing the sound - 'true' means audio loops
 		audio_play_sound(snd_level_1_water, 0, true);
+	}
+	
+	// restarting room if delete pressed
+	if keyboard_check_pressed(vk_delete){
+		// resetting all things to as they were at the start - player coords and barriers existing
+		checkpointX = 640;
+		checkpointY = 736;
+		// resetting info in save file
+		var level1info = [640, 736, 1, 1, 1];
+		// turning data into a JSON string (because buffers can't be arrays) and making it a buffer to save it
+		var str = json_stringify(level1info);
+		var buffer = buffer_create(string_byte_length(str) + 1, buffer_fixed, 1);
+		buffer_write( buffer, buffer_string, str);
+		//saving the buffer to a file
+		buffer_save( buffer, "level1info.save");
+		// deleting buffer because its no longer needed
+		buffer_delete(buffer);
+		// readding barriers if they're gone
+		if (!instance_exists(obj_level_1_barrier_1)) instance_create_layer(560, 64, "Instances_1", obj_level_1_barrier_1);
+		if (!instance_exists(obj_level_1_barrier_2)) instance_create_layer(624, 64, "Instances_1", obj_level_1_barrier_2);
+		if (!instance_exists(obj_level_1_barrier_3)) instance_create_layer(1280, 592, "Instances_1", obj_level_1_barrier_3);
+		// restarting room
+		room_restart();
 	}
 
 	//calculating player movement
