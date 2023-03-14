@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_levels_button_level_2",
+  "name": "obj_level_2_opening_animation",
   "spriteId": {
-    "name": "spr_levels_button_level_2",
-    "path": "sprites/spr_levels_button_level_2/spr_levels_button_level_2.yy",
+    "name": "spr_level_2_opening_animation",
+    "path": "sprites/spr_level_2_opening_animation/spr_level_2_opening_animation.yy",
   },
   "solid": false,
   "visible": true,
@@ -26,7 +26,6 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
