@@ -1,11 +1,8 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_level_2_opening_animation",
-  "spriteId": {
-    "name": "spr_level_2_opening_animation",
-    "path": "sprites/spr_level_2_opening_animation/spr_level_2_opening_animation.yy",
-  },
+  "name": "obj_settings_slider",
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "managed": true,
@@ -24,10 +21,7 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
-  ],
+  "eventList": [],
   "properties": [],
   "overriddenProperties": [],
   "parent": {

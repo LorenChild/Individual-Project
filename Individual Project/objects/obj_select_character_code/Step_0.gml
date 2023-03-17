@@ -48,6 +48,17 @@ if keyboard_check_pressed(vk_enter){
 	if global.player_character_picked != global.player_character_selected{
 		// plays sound effect - 'false' means it doesn't loop
 		audio_play_sound(snd_select_character, 0, false);
+		
+		// saving character selected value in a save file
+		var playerCharacterSelected = global.player_character_selected;
+		// turning data into a JSON string (because buffers can't be arrays) and making it a buffer to save it
+		var str = json_stringify(playerCharacterSelected);
+		var buffer = buffer_create(string_byte_length(str) + 1, buffer_fixed, 1);
+		buffer_write( buffer, buffer_string, str);
+		//saving the buffer to a file
+		buffer_save( buffer, "playercharacterselected.save");
+		// deleting buffer because its no longer needed
+		buffer_delete(buffer);
 
 		global.player_character_picked = global.player_character_selected;
 	}

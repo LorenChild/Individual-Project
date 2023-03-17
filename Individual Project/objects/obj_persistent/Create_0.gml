@@ -3,9 +3,27 @@
 // list of possible player sprites (big and small)
 global.PLAYER_CHARACTER_LIST = [spr_player_red, spr_player_orange, spr_player_yellow, spr_player_green, spr_player_blue, spr_player_pink, spr_player_purple, spr_player_checkered];
 global.PLAYER_CHARACTER_LIST_SMALLER = [spr_player_red_smaller, spr_player_orange_smaller, spr_player_yellow_smaller, spr_player_green_smaller, spr_player_blue_smaller, spr_player_pink_smaller, spr_player_purple_smaller, spr_player_checkered_smaller];
+
 //selected / picked player sprite
-global.player_character_selected = 0;
-global.player_character_picked = 0;
+// loading from save file if it exists
+if (file_exists("playercharacterselected.save")){
+	// loading buffer from file
+	var buffer = buffer_load("playercharacterselected.save");
+	// saving buffer as string
+	var str = buffer_read(buffer, buffer_string);
+	// deleting buffer because we now have it saved as a string
+	buffer_delete(buffer);
+	// making data string back into an array
+	var playerCharacterSelected = json_parse(str);
+	// setting player characters picked and selected to ones from save file, so the character you play as remains the same as before and the boxes in the character select page appear around the character currently selected
+	global.player_character_selected = playerCharacterSelected;
+	global.player_character_picked = playerCharacterSelected;
+// otherwise selected character is default one, the red one, with index 0
+} else{
+	global.player_character_selected = 0;
+	global.player_character_picked = 0;
+}
+
 
 // variable for which option in the menu page is selected
 global.menuSelected = 0;
