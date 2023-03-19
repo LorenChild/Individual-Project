@@ -15,7 +15,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "snd_level_2_opening_animation.mp3",
-  "duration": 4.3102,
+  "duration": 2.690562,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
